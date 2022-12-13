@@ -1,0 +1,63 @@
+﻿@model CRUDHoteles.Models.Hotele
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar Registro</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HotelId" />
+            <div class="form-group">
+                <label asp-for="HotelName" class="control-label">Nombre</label>
+                <input asp-for="HotelName" class="form-control" />
+                <span asp-validation-for="HotelName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label">Categoría</label>
+                <select asp-for="Categoria" class="form-control" required>
+                    <option value="">Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label">Precio</label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto1" class="control-label">Foto 1</label>
+                <input type="file" asp-for="Foto1" class="form-control" />
+                <span asp-validation-for="Foto1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto2" class="control-label">Foto 2</label>
+                <input type="file" asp-for="Foto2" class="form-control" />
+                <span asp-validation-for="Foto2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto3" class="control-label">Foto 3</label>
+                <input type="file" asp-for="Foto3" class="form-control" />
+                <span asp-validation-for="Foto3" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <a asp-action="Index" style="text-decoration:none;">
+                    <input type="button" value="Volver" class="btn btn-danger" />
+                </a>
+                <input type="submit" value="Modificar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

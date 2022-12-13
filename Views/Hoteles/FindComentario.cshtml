@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CRUDHoteles.Models.Hotele>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*@foreach (Calificacione C in ViewBag.Calificaciones)
+{
+    <li>@C.Id - @C.Calificacion</li>
+}
+
+@foreach (Hotele H in ViewBag.Hoteles)
+{
+    <li>@H.Categoria - @H.HotelName</li>
+}
+
+@ViewBag.Id*@
+
+@*@foreach (Hotele H in ViewBag.Hotel)
+{
+    <li>@H.HotelName - @H.Categoria</li>
+}*@
+
+<h1>Listado de Hoteles</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Calificación</th>
+            <th>Comentario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (@ViewBag.contador1 == 0)
+        {
+            <tr>
+                <td colspan="3" class="text-center">No se han conseguido datos</td>
+            </tr>
+        }
+
+        @foreach (var H in ViewBag.Hotel)
+        {
+            <tr>
+                <td>@H.hoteles.HotelName</td>
+                <td>@H.calificaciones.Calificacion</td>
+                <td>@H.calificaciones.Comentario</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

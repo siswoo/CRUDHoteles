@@ -1,0 +1,143 @@
+﻿@model IEnumerable<CRUDHoteles.Models.Hotele>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*@foreach (Calificacione C in ViewBag.Calificaciones)
+{
+    <li>@C.Id - @C.Calificacion</li>
+}
+
+@foreach (Hotele H in ViewBag.Hoteles)
+{
+    <li>@H.Categoria - @H.HotelName</li>
+}
+
+@ViewBag.Id*@
+
+@*@foreach (Hotele H in ViewBag.Hotel)
+{
+    <li>@H.HotelName - @H.Categoria</li>
+}*@
+
+<h1>Listado de Hoteles</h1>
+
+<div class="col-md-12">
+    <a asp-action="Create" class="btn btn-success mt-3 mb-3">Crear Registro</a>
+</div>
+
+<form asp-action="GetComentario" method="Get">
+    <div class="row mt-3 mb-3">
+        <div class="col-md-3">
+            <label>Categoría</label>
+            <select class="form-control" id="Categoria" name="Categoria">
+                <option value="">Seleccione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Calificación</label>
+            <select class="form-control" id="Calificacion" name="Calificacion">
+                <option value="">Seleccione</option>
+                <option value="1">Tiene Calificación</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Precio</label>
+            <select class="form-control" id="Precio" name="Precio">
+                <option value="">Seleccione</option>
+                <option value="1">Desde el Menor</option>
+                <option value="2">Desde el Mayor</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="submit" class="btn btn-primary" style="margin-top:1.5rem;" value="Filtrar">
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Foto1</th>
+            <th>Foto2</th>
+            <th>Foto3</th>
+            <th class="text-center">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (Hotele H in ViewBag.Hotel)
+        {
+            <tr>
+                <td>@H.HotelName</td>
+                <td>@H.Categoria</td>
+                <td>@H.Precio</td>
+                <td>@H.Foto1</td>
+                <td>@H.Foto2</td>
+                <td>@H.Foto3</td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@H.HotelId" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@H.HotelId" class="btn btn-primary ml-2">Detalles</a>
+                    <a asp-action="GetComentario" asp-route-id="@H.HotelId" class="btn btn-primary ml-2">Comentarios</a>
+                    <a asp-action="Delete" asp-route-id="@H.HotelId" class="btn btn-danger ml-2">Eliminar</a>
+                </td>
+            </tr>
+        }*@
+        @if (@ViewBag.contador1 == 0)
+        {
+            <tr>
+                <td colspan="7" class="text-center">No se han conseguido datos</td>
+            </tr>
+        }
+        
+        @if (@ViewBag.Condicional != 2)
+        {
+            @foreach (var H in ViewBag.Hotel)
+            {
+                <tr>
+                    <td>@H.HotelName</td>
+                    <td>@H.Categoria</td>
+                    <td>@H.Precio</td>
+                    <td>@H.Foto1</td>
+                    <td>@H.Foto2</td>
+                    <td>@H.Foto3</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@H.HotelId" class="btn btn-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@H.HotelId" class="btn btn-primary ml-2">Detalles</a>
+                        <a asp-action="GetComentario" asp-route-id="@H.HotelId" class="btn btn-primary ml-2">Comentarios</a>
+                        <a asp-action="Delete" asp-route-id="@H.HotelId" class="btn btn-danger ml-2">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+
+        @if (@ViewBag.Condicional == 2)
+        {
+            @foreach (var H in ViewBag.Hotel)
+            {
+                <tr>
+                    <td>@H.hoteles.HotelName</td>
+                    <td>@H.hoteles.Categoria</td>
+                    <td>@H.hoteles.Precio</td>
+                    <td>@H.hoteles.Foto1</td>
+                    <td>@H.hoteles.Foto2</td>
+                    <td>@H.hoteles.Foto3</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@H.hoteles.HotelId" class="btn btn-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@H.hoteles.HotelId" class="btn btn-primary ml-2">Detalles</a>
+                        <a asp-action="FindComentario" asp-route-id="@H.hoteles.HotelId" class="btn btn-primary ml-2">Comentarios</a>
+                        <a asp-action="Delete" asp-route-id="@H.hoteles.HotelId" class="btn btn-danger ml-2">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
